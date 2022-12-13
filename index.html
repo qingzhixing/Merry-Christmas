@@ -2,27 +2,37 @@
 <html lang="zh">
 
 <head>
+    <!--IE 兼容-->
+    <!--[if lte ie 8]>
+            <script src="html5shiv.min.js"></script>
+    <![endif]-->
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Author" content="qingzhixing">
     <meta name="Keywords" content="HTML;入门;HTML基础;Christmas;Merry Christmas" />
     <meta name="Description" content="巩固HTML基础的整活页面" />
+
     <link rel="icon" href="./static/icon/event_christmas_tree_01.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./style/main.css">
+    <script src="./script/main.js" type="text/javascript"></script>
+
     <title>Merry Christmas!</title>
+
+
 </head>
 
 <body>
     <header>
-        <h1>Merry Christmas</h1>
+        <h1 id="header-text">Merry Christmas</h1>
     </header>
 
-    <section>
-        <h3>I'm section</h3>
-        <marquee direction="right" behavior="alternate" scrollamount="200" loop="-1" scrolldelay="500">
+    <div class="main">
+        <h3>I'm main</h3>
+        <marquee direction="right" scrollamount="100" loop="-1" scrolldelay="500">
             <img src="./static/img/1670945143397.gif" width="200px" height="150px" alt="海豚🐬" title="海豚也要过圣诞节🎄">
         </marquee>
-    </section>
+    </div>
 
     <footer>
         footer
