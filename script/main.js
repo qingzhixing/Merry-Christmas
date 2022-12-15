@@ -36,7 +36,9 @@ function GetElementPositionInfo(element) {
     };
 }
 function GenerateMarble(element) {
+    //minSpeed<=maxSpeed
     const maxSpeed = 10;
+    const minSpeed = 3;
     function StartMarble() {
         // console.log('StartMarble');
         let element=this.element;
@@ -82,7 +84,7 @@ function GenerateMarble(element) {
 
     }
     return {
-        moveSpeed: Math.random() * maxSpeed,
+        moveSpeed: Math.random() * (maxSpeed-minSpeed) + minSpeed,
         moveDirection: GenerateRandomMoveDirection(),
         element: element,
         StartMarble: StartMarble
