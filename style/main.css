@@ -10,10 +10,19 @@ header{
     flex-direction: column;
     align-items: center;
 }
-
 #header-text{
     font-size: 30px;
 }
+
+#picture-go-by{
+    background-color: blue;
+    padding-top: 20px;
+    color: yellow;
+}
+#picture-go-by *{
+    margin: 2px 2px;
+}
+
 
 img{
     border: 3px solid rgb(255, 0, 111)
