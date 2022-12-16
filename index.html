@@ -31,12 +31,12 @@
     </header>
 
     <div class="main">
-        <marquee id="picture-go-by" direction="right" behavior="alternate" scrollamount="50" loop="-1"
-            scrolldelay="500">
+        <marquee id="picture-go-by" direction="right" behavior="alternate" scrollamount="100" loop="-1"
+            scrolldelay="1000">
             麦当劳
             <img src="./static/img/海豚跳.gif" width="200px" height="150px" alt="海豚🐬" title="海豚也要过圣诞节🎄">
             <img src="./static/img/ff14圣诞树1.jpg" width="150px" height="150px">
-            疯狂星期四
+            <div class="rotating">疯狂星期四</div>
             <img src="./static/img/ff14圣诞树2.jpg" width="100px" height="100px">
             <img src="./static/img/50.jpg" width="100px" height="120px">
             v50CNY
@@ -71,8 +71,9 @@
                 height="50px" alt="🌹🤵" title="🌹🤵">
 
         </div>
-        <img src="./static/img/猫惊讶.jpg" width="500px" height="500px" alt="猫咪惊讶"
-            style="">
+        <img onclick="Rotate(this,50)" src="./static/img/猫惊讶.jpg" width="400px" height="400px" alt="猫咪惊讶"
+            style="position: relative;left:50px; top:80px">
+        <img src="./static/img/圣诞树.jpeg" alt="圣诞树" style="position:relative;left:50px">
     </div>
 
     <footer>
