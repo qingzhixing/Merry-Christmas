@@ -23,7 +23,6 @@ function GenerateRandomMoveDirection(){
     let verticalDirection=(Math.random()>=0.5)? 1:-1;
     return GenerateMoveDirection(horizontalDirection, verticalDirection);
 }
-
 function GeneratePosition(x, y) {
     return { x, y };
 }
@@ -37,14 +36,14 @@ function GetElementPositionInfo(element) {
 }
 function GenerateMarble(element) {
     //minSpeed<=maxSpeed
-    const maxSpeed = 10;
-    const minSpeed = 3;
+    const maxSpeed = 5;
+    const minSpeed = 1;
     function StartMarble() {
         // console.log('StartMarble');
         let element=this.element;
         let elementPositionInfo = GetElementPositionInfo(element);
-        let windowWidth = window.innerWidth;
-        let windowHeight = window.innerHeight;
+        let bodyWidth = Math.max(document.body.clientWidth,window.innerWidth);
+        let bodyHeight = Math.max(document.body.clientHeight,window.innerHeight);
         let moveDirection=this.moveDirection;
         let moveSpeed = this.moveSpeed;
 
@@ -52,8 +51,8 @@ function GenerateMarble(element) {
         //horizontal
         if (1 == moveDirection.horizontalDirection) {
             nextPosition.x += moveSpeed;
-            if (nextPosition.x+elementPositionInfo.width >= windowWidth) {
-                nextPosition.x = windowWidth - elementPositionInfo.width;
+            if (nextPosition.x+elementPositionInfo.width >= bodyWidth) {
+                nextPosition.x = bodyWidth - elementPositionInfo.width;
                 moveDirection.horizontalDirection = -1;
             }
         } else {
@@ -66,8 +65,8 @@ function GenerateMarble(element) {
         //vertical
         if (1 == moveDirection.verticalDirection) {
             nextPosition.y += moveSpeed;
-            if (nextPosition.y+elementPositionInfo.height >= windowHeight) {
-                nextPosition.y = windowHeight - elementPositionInfo.height;
+            if (nextPosition.y+elementPositionInfo.height >= bodyHeight) {
+                nextPosition.y = bodyHeight - elementPositionInfo.height;
                 moveDirection.verticalDirection = -1;
             }
         } else {
@@ -100,7 +99,64 @@ function MoveMarble() {
     }
 }
 
+function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+async function Rotate(element,speed){
+    let counter=0;
+    while(counter<=360){
+        counter+=speed;
+        if(counter<=360){
+            element.style.transform="rotate("+counter+"deg)"
+        }
+        await sleep(50);
+    }
+    element.style.transform="rotate("+0+"deg)"
+}
+
+async function RotateForever(element,speed){
+    while(true){
+        await Rotate(element,speed);
+    }
+}
+
+function HandleRotatingElement(){
+    let rotatingElements=document.getElementsByClassName('rotating');
+    for(let i=0;i<rotatingElements.length;i++){
+        let rotatingElement=rotatingElements[i];
+        let rotateSpeedAttributes=rotatingElement.attributes.getNamedItem("rotate-speed");
+        let rotateSpeed=0;
+        if(rotateSpeedAttributes!=null){
+            rotateSpeed=parseInt(rotateSpeedAttributes.value);
+        }else{
+            const minRotateSpeed=1;
+            const maxRotateSpeed=5;
+            rotateSpeed=Math.random()*(maxRotateSpeed-minRotateSpeed)+minRotateSpeed;
+        }
+        RotateForever(rotatingElement,rotateSpeed);
+    }
+}
+
+function MoveElementToRandomPosition(element){
+    let bodyWidth = Math.max(document.body.clientWidth,window.innerWidth);
+    let bodyHeight = Math.max(document.body.clientHeight,window.innerHeight);
+    let randomX=Math.random()*bodyWidth;
+    let randomY=Math.random()*bodyHeight;
+    element.style.left = randomX+'px';
+    element.style.top = randomY+'px';
+}
+function HandleRandomPositionElement(){
+    let randomPositionElements=document.getElementsByClassName("random-position");
+    for(let i=0;i<randomPositionElements.length;i++){
+        let randomPositionElement=randomPositionElements[i];
+        MoveElementToRandomPosition(randomPositionElement);
+        console.log(randomPositionElement);
+    }
+}
+
 window.onload = () => {   
     ChangeHeaderText(0);
     MoveMarble();
+    HandleRotatingElement();
+    HandleRandomPositionElement();
 }
