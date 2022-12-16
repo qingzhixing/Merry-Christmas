@@ -15,9 +15,10 @@ header{
 }
 
 #picture-go-by{
-    background-color: blue;
     padding-top: 20px;
     color: yellow;
+    border: 5px solid brown;
+    background-color: black;
 }
 #picture-go-by *{
     margin: 2px 2px;
