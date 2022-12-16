@@ -150,7 +150,6 @@ function HandleRandomPositionElement(){
     for(let i=0;i<randomPositionElements.length;i++){
         let randomPositionElement=randomPositionElements[i];
         MoveElementToRandomPosition(randomPositionElement);
-        console.log(randomPositionElement);
     }
 }
 
