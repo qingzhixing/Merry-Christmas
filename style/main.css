@@ -3,6 +3,10 @@
 body{
     background-color: cadetblue;
     font-family: "Smiley Sans";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 header{
     letter-spacing: 5px;
@@ -34,6 +38,12 @@ img{
 }
 
 footer{
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 5px;
+    width: 100vw;
+    border-top:1px solid rgb(26, 129, 15);
+    background-color: azure;
     display: flex;
     flex-direction: row;
     align-items: center;
