@@ -63,3 +63,11 @@ footer a{
     border-radius: 20px;
     text-align: center;
 }
+
+#hacked{
+    position: absolute;
+    top:70px;
+    color: hotpink;
+    letter-spacing: 10px;
+    text-shadow: 3px 3px springgreen;
+}

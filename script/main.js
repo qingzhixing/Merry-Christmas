@@ -158,4 +158,5 @@ window.onload = () => {
     MoveMarble();
     HandleRotatingElement();
     HandleRandomPositionElement();
+    console.log("@qingzhixing 2022/12/25")
 }
