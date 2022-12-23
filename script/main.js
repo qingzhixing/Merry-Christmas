@@ -159,10 +159,9 @@ window.onload = () => {
     HandleRotatingElement();
     HandleRandomPositionElement();
     window.onkeydown=(event) => {
-        console.log(event)
         if(event.code=='KeyP'){
-            let audio=new Audio("../static/audio/压力马斯内.mov")
-            audio.play();
+            let roarContainer=document.getElementById("roar-container")
+            roarContainer.play();
         }
     }
     console.log("@qingzhixing 2022/12/25")
