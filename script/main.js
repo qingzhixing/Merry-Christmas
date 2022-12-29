@@ -93,10 +93,9 @@ function GenerateMarble(element) {
 
 function MoveMarble() {
     let marbleElements = document.getElementsByClassName('marble');
-    for (let i = 0; i < marbleElements.length; i++) {
-        let marble = marbleElements[i];
+    Array.from(marbleElements).forEach(marble => {
         GenerateMarble(marble).StartMarble();
-    }
+    });
 }
 
 function sleep (time) {
@@ -122,8 +121,7 @@ async function RotateForever(element,speed){
 
 function HandleRotatingElement(){
     let rotatingElements=document.getElementsByClassName('rotating');
-    for(let i=0;i<rotatingElements.length;i++){
-        let rotatingElement=rotatingElements[i];
+    Array.from(rotatingElements).forEach(rotatingElement => {
         let rotateSpeedAttributes=rotatingElement.attributes.getNamedItem("rotate-speed");
         let rotateSpeed=0;
         if(rotateSpeedAttributes!=null){
@@ -134,7 +132,7 @@ function HandleRotatingElement(){
             rotateSpeed=Math.random()*(maxRotateSpeed-minRotateSpeed)+minRotateSpeed;
         }
         RotateForever(rotatingElement,rotateSpeed);
-    }
+    });
 }
 
 function MoveElementToRandomPosition(element){
@@ -147,10 +145,7 @@ function MoveElementToRandomPosition(element){
 }
 function HandleRandomPositionElement(){
     let randomPositionElements=document.getElementsByClassName("random-position");
-    for(let i=0;i<randomPositionElements.length;i++){
-        let randomPositionElement=randomPositionElements[i];
-        MoveElementToRandomPosition(randomPositionElement);
-    }
+    Array.from(randomPositionElements).forEach(MoveElementToRandomPosition);
 }
 
 window.onload = () => {   
