@@ -15,39 +15,40 @@ function ChangeHeaderText(emojiId){
 * horizontalDirection: 1右 -1左
 * verticalDirection: 1下 -1上
 */
-function GenerateMoveDirection(horizontalDirection, verticalDirection) {
-    return { horizontalDirection, verticalDirection };
+function MoveDirection(horizontalDirection, verticalDirection) {
+    this.horizontalDirection=horizontalDirection;
+    this.verticalDirection=verticalDirection;
 }
 function GenerateRandomMoveDirection(){
     let horizontalDirection=(Math.random()>=0.5)? 1:-1;
     let verticalDirection=(Math.random()>=0.5)? 1:-1;
-    return GenerateMoveDirection(horizontalDirection, verticalDirection);
+    return new MoveDirection(horizontalDirection, verticalDirection);
 }
-function GeneratePosition(x, y) {
-    return { x, y };
+function Position(x, y) {
+    this.x=x; 
+    this.y=y;
 }
-function GetElementPositionInfo(element) {
-    return {
-        leftPosition: element.offsetLeft,
-        topPosition: element.offsetTop,
-        width: element.offsetWidth,
-        height: element.offsetHeight
-    };
+function ElementPositionInfo(element) {
+    
+    this.leftPosition = element.offsetLeft,
+    this.topPosition = element.offsetTop,
+    this.width = element.offsetWidth,
+    this.height = element.offsetHeight
 }
-function GenerateMarble(element) {
+function Marble(element) {
     //minSpeed<=maxSpeed
     const maxSpeed = 5;
     const minSpeed = 1;
     function StartMarble() {
         // console.log('StartMarble');
         let element=this.element;
-        let elementPositionInfo = GetElementPositionInfo(element);
+        let elementPositionInfo = new ElementPositionInfo(element);
         let bodyWidth = Math.max(document.body.clientWidth,window.innerWidth);
         let bodyHeight = Math.max(document.body.clientHeight,window.innerHeight);
         let moveDirection=this.moveDirection;
         let moveSpeed = this.moveSpeed;
 
-        let nextPosition = GeneratePosition(elementPositionInfo.leftPosition, elementPositionInfo.topPosition);
+        let nextPosition = new Position(elementPositionInfo.leftPosition, elementPositionInfo.topPosition);
         //horizontal
         if (1 == moveDirection.horizontalDirection) {
             nextPosition.x += moveSpeed;
@@ -82,19 +83,19 @@ function GenerateMarble(element) {
         setTimeout(() => { this.StartMarble() }, 18);
 
     }
-    return {
-        moveSpeed: Math.random() * (maxSpeed-minSpeed) + minSpeed,
-        moveDirection: GenerateRandomMoveDirection(),
-        element: element,
-        StartMarble: StartMarble
-    }
+    
+    this.moveSpeed=Math.random() * (maxSpeed-minSpeed) + minSpeed,
+    this.moveDirection=GenerateRandomMoveDirection(),
+    this.element=element,
+    this.StartMarble=StartMarble
+    
 }
 
 
 function MoveMarble() {
     let marbleElements = document.getElementsByClassName('marble');
     Array.from(marbleElements).forEach(marble => {
-        GenerateMarble(marble).StartMarble();
+        (new Marble(marble)).StartMarble();
     });
 }
 
